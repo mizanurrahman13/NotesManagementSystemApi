@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{24ADBE35-388F-43EB-A7A5-B42B1566C368}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "applications", "applications", "{AE5C37EB-85FA-4BBC-9BA7-FB02D20103D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libraries", "libraries", "{3AB5D8DF-2C6F-40DC-8595-B2D5417118B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4396AE64-EA83-4CBE-B3F6-518F52CFBBB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOTEKEEPER.Api", "src\applications\NOTEKEEPER.Api\NOTEKEEPER.Api.csproj", "{483CE225-6D34-462A-AE98-F0134CEA1FEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{483CE225-6D34-462A-AE98-F0134CEA1FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483CE225-6D34-462A-AE98-F0134CEA1FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483CE225-6D34-462A-AE98-F0134CEA1FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483CE225-6D34-462A-AE98-F0134CEA1FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE5C37EB-85FA-4BBC-9BA7-FB02D20103D4} = {24ADBE35-388F-43EB-A7A5-B42B1566C368}
+		{3AB5D8DF-2C6F-40DC-8595-B2D5417118B3} = {24ADBE35-388F-43EB-A7A5-B42B1566C368}
+		{4396AE64-EA83-4CBE-B3F6-518F52CFBBB0} = {24ADBE35-388F-43EB-A7A5-B42B1566C368}
+		{483CE225-6D34-462A-AE98-F0134CEA1FEE} = {AE5C37EB-85FA-4BBC-9BA7-FB02D20103D4}
+	EndGlobalSection
+EndGlobal

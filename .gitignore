@@ -1,0 +1,13 @@
+﻿**/wwwroot/upload/*
+**/bin/
+**/debug/
+**/obj/
+**/.vs/
+**/.cr/
+**/.idea/
+**/TestResults/
+**/Logs/*.log
+**/*.user
+**/*.dbmdl
+**/*.jfm
+/src/api/PCS.WebApi/wwwroot
