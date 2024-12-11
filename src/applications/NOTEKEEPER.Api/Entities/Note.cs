@@ -1,4 +1,6 @@
-﻿namespace NOTEKEEPER.Api.Entities;
+﻿using NOTEKEEPER.Api.Enums;
+
+namespace NOTEKEEPER.Api.Entities;
 
 public class Note
 {
