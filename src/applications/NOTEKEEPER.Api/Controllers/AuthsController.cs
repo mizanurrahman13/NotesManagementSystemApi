@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NOTEKEEPER.Api.Contexts;
 using NOTEKEEPER.Api.Entities;
@@ -11,13 +14,15 @@ namespace NOTEKEEPER.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthsController : ControllerBase
 {
     private readonly ApplicationContext _context;
+    private readonly JwtSetting _jwtSetting;
 
-    public AuthController(ApplicationContext context)
+    public AuthsController(ApplicationContext context, IOptions<JwtSetting> jwtSetting)
     {
         _context = context;
+        _jwtSetting = jwtSetting.Value;
     }
 
     [HttpPost("signup")]
@@ -58,7 +63,7 @@ public class AuthController : ControllerBase
     private string GenerateJwtToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.UTF8.GetBytes("9EE9E917-7A63-4409-B440-55F17517F70A-NoteKeeperNoteKeeperNoteKeeperNoteKeeperNoteKeeperNoteKeeperNoteKeeper");
+        var key = Encoding.UTF8.GetBytes(_jwtSetting.SecretKey);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
@@ -69,8 +74,8 @@ public class AuthController : ControllerBase
             }),
             Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-            Issuer = "Issuer",
-            Audience = "Audience"
+            Issuer = _jwtSetting.Issuer,
+            Audience = _jwtSetting.Audience
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
