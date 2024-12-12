@@ -43,6 +43,32 @@ public class NotesController : ControllerBase
         return Ok(note);
     }
 
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<IActionResult> UpdateNote(int id, [FromBody] CreateNoteModel model)
+    {
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        var note = await _context.Notes.FirstOrDefaultAsync(n => n.Id == id && n.UserId == userId);
+
+        if (note == null)
+        {
+            return NotFound();
+        }
+
+        note.Text = model.Text;
+        note.Type = model.Type;
+        note.Reminder = model.Reminder;
+        note.DueDate = model.DueDate;
+        note.IsComplete = model.IsComplete;
+        note.Url = model.Url;
+
+        _context.Notes.Update(note);
+        await _context.SaveChangesAsync();
+
+        return Ok(note);
+    }
+
+
     [HttpGet("dashboard")]
     [Authorize]
     public async Task<IActionResult> GetDashboard()
@@ -57,6 +83,8 @@ public class NotesController : ControllerBase
     public async Task<IActionResult> GetTodayNotes()
     {
         var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        DateTime someDateTime = DateTime.Now;
+        DateTime dateOnly = someDateTime.Date;
         var today = DateTime.Today;
         var notes = await _context.Notes
             .Where(n => n.UserId == userId &&
