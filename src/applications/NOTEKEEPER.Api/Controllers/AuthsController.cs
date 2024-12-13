@@ -30,7 +30,7 @@ public class AuthsController : ControllerBase
     {
         if (_context.Users.Any(u => u.Email == model.Email))
         {
-            return BadRequest("Email already in use");
+            return BadRequest(new { message = "Email already in use" });
         }
 
         var user = new User
@@ -44,8 +44,9 @@ public class AuthsController : ControllerBase
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
-        return Ok("User created successfully");
+        return Ok(new { message = "User created successfully" });
     }
+
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
